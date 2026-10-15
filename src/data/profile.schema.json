@@ -1,0 +1,133 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Professional Profile",
+  "description": "Data for the profile page. Gives autocompletion and validation in editors like VS Code.",
+  "type": "object",
+  "required": ["basics"],
+  "definitions": {
+    "date": {
+      "type": "string",
+      "description": "\"2024-03\", \"2024\" or \"present\"",
+      "pattern": "^(\\d{4}(-\\d{2})?|present)$"
+    },
+    "stringList": { "type": "array", "items": { "type": "string" } }
+  },
+  "properties": {
+    "$schema": { "type": "string" },
+    "basics": {
+      "type": "object",
+      "required": ["name", "label"],
+      "properties": {
+        "name": { "type": "string" },
+        "label": { "type": "string", "description": "Role or headline, e.g. \"Full Stack Developer\"" },
+        "image": { "type": "string", "description": "URL or path to a photo. Leave empty to show initials." },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "url": { "type": "string" },
+        "location": { "type": "string" },
+        "summary": { "type": "string" },
+        "highlights": { "$ref": "#/definitions/stringList", "description": "Short badges shown in the hero" },
+        "profiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["network", "url"],
+            "properties": {
+              "network": {
+                "type": "string",
+                "description": "github, linkedin, x, gitlab, website, medium, dev, stackoverflow, youtube, instagram (others use a generic icon)"
+              },
+              "username": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "work": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["company", "position", "startDate"],
+        "properties": {
+          "company": { "type": "string" },
+          "position": { "type": "string" },
+          "url": { "type": "string" },
+          "location": { "type": "string" },
+          "startDate": { "$ref": "#/definitions/date" },
+          "endDate": { "$ref": "#/definitions/date" },
+          "summary": { "type": "string" },
+          "highlights": { "$ref": "#/definitions/stringList" },
+          "technologies": { "$ref": "#/definitions/stringList" }
+        }
+      }
+    },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["institution", "area"],
+        "properties": {
+          "institution": { "type": "string" },
+          "area": { "type": "string" },
+          "studyType": { "type": "string" },
+          "url": { "type": "string" },
+          "startDate": { "$ref": "#/definitions/date" },
+          "endDate": { "$ref": "#/definitions/date" },
+          "summary": { "type": "string" }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "keywords"],
+        "properties": {
+          "name": { "type": "string" },
+          "level": { "type": "number", "minimum": 0, "maximum": 100 },
+          "keywords": { "$ref": "#/definitions/stringList" }
+        }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "description"],
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "url": { "type": "string" },
+          "repo": { "type": "string" },
+          "image": { "type": "string" },
+          "technologies": { "$ref": "#/definitions/stringList" },
+          "highlights": { "$ref": "#/definitions/stringList" },
+          "featured": { "type": "boolean" }
+        }
+      }
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["language", "fluency"],
+        "properties": { "language": { "type": "string" }, "fluency": { "type": "string" } }
+      }
+    },
+    "certificates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "issuer"],
+        "properties": {
+          "name": { "type": "string" },
+          "issuer": { "type": "string" },
+          "date": { "$ref": "#/definitions/date" },
+          "url": { "type": "string" }
+        }
+      }
+    },
+    "interests": { "$ref": "#/definitions/stringList" }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "$schema": "./profile.schema.json",
+  "basics": {
+    "name": "Alex Rivera",
+    "label": "Full Stack Developer",
+    "image": "",
+    "email": "alex.rivera@example.com",
+    "phone": "+598 99 123 456",
+    "url": "https://example.com",
+    "location": "Montevideo, Uruguay",
+    "summary": "Developer with 7+ years building web products end to end: from data models and APIs to interfaces people enjoy using. I like small teams, clear code and shipping things that solve real problems.",
+    "highlights": ["Open to remote", "Spanish & English", "7+ years"],
+    "profiles": [
+      { "network": "github", "username": "alexrivera", "url": "https://github.com/" },
+      { "network": "linkedin", "username": "alexrivera", "url": "https://www.linkedin.com/" },
+      { "network": "x", "username": "alexrivera", "url": "https://x.com/" }
+    ]
+  },
+  "work": [
+    {
+      "company": "Northwind Labs",
+      "position": "Senior Full Stack Developer",
+      "url": "https://example.com",
+      "location": "Remote",
+      "startDate": "2022-03",
+      "endDate": "present",
+      "summary": "Lead developer on the payments and billing platform used by 200+ business customers.",
+      "highlights": [
+        "Redesigned the billing service with event queues, cutting failed charges by 35%.",
+        "Built an internal design system adopted by four product teams.",
+        "Mentored three junior developers through their first year."
+      ],
+      "technologies": ["TypeScript", "React", "Node.js", "PostgreSQL", "AWS"]
+    },
+    {
+      "company": "Bluebird Software",
+      "position": "Full Stack Developer",
+      "location": "Montevideo, Uruguay",
+      "startDate": "2019-06",
+      "endDate": "2022-02",
+      "summary": "Developed web apps and integrations for clients in logistics and retail.",
+      "highlights": [
+        "Shipped a real-time fleet tracking dashboard for 1,500 vehicles.",
+        "Automated reporting pipelines, saving the ops team ~20 hours a week."
+      ],
+      "technologies": ["React", "Python", "Django", "Redis", "Docker"]
+    },
+    {
+      "company": "Freelance",
+      "position": "Web Developer",
+      "startDate": "2017-01",
+      "endDate": "2019-05",
+      "summary": "Websites and small business tools for local companies.",
+      "technologies": ["JavaScript", "PHP", "MySQL"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad de la República",
+      "area": "Computer Engineering",
+      "studyType": "Bachelor's degree",
+      "startDate": "2013",
+      "endDate": "2018"
+    }
+  ],
+  "skills": [
+    { "name": "Frontend", "level": 90, "keywords": ["React", "TypeScript", "Tailwind CSS", "Next.js", "Accessibility"] },
+    { "name": "Backend", "level": 85, "keywords": ["Node.js", "Python", "REST", "GraphQL", "Queues"] },
+    { "name": "Data", "level": 75, "keywords": ["PostgreSQL", "Redis", "ETL", "SQL tuning"] },
+    { "name": "DevOps", "level": 70, "keywords": ["Docker", "AWS", "CI/CD", "Terraform"] }
+  ],
+  "projects": [
+    {
+      "name": "Professional Profile",
+      "description": "This site: a profile template driven by one JSON file, with five style variants and a single config file for colors.",
+      "repo": "https://github.com/smogliazza/profesional-profile",
+      "technologies": ["React", "Tailwind CSS", "Vite"],
+      "featured": true
+    },
+    {
+      "name": "Queue Monitor",
+      "description": "Small dashboard to inspect, retry and replay messages from background job queues.",
+      "url": "https://example.com",
+      "technologies": ["Node.js", "Redis", "React"],
+      "featured": true
+    },
+    {
+      "name": "Expense Splitter",
+      "description": "Mobile-first app to split shared expenses between friends with offline support.",
+      "technologies": ["TypeScript", "PWA", "IndexedDB"]
+    }
+  ],
+  "languages": [
+    { "language": "Spanish", "fluency": "Native" },
+    { "language": "English", "fluency": "Professional (C1)" }
+  ],
+  "certificates": [
+    { "name": "AWS Certified Developer – Associate", "issuer": "Amazon Web Services", "date": "2023-05" }
+  ],
+  "interests": ["Open source", "Cycling", "Photography", "Board games"]
+}
