@@ -1,0 +1,137 @@
+@import 'tailwindcss';
+
+/* Dark mode follows the `.dark` class set by the theme provider */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Color tokens come from profile.config.ts as CSS variables (--pp-*),
+ * and are exposed to Tailwind as utilities: bg-page, text-ink, border-line,
+ * bg-primary, text-on-primary, text-muted, bg-surface, text-accent...
+ * Opacity modifiers work too: bg-primary/10, border-line/50.
+ */
+@theme inline {
+  --color-page: var(--pp-page);
+  --color-surface: var(--pp-surface);
+  --color-ink: var(--pp-ink);
+  --color-muted: var(--pp-muted);
+  --color-line: var(--pp-line);
+  --color-primary: var(--pp-primary);
+  --color-on-primary: var(--pp-on-primary);
+  --color-accent: var(--pp-accent);
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Fraunces', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.6s ease-out both;
+  --animate-blink: blink 1s step-end infinite;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(0, -24px, 0) scale(1.05);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-color: var(--pp-page);
+    color: var(--pp-ink);
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease;
+  }
+  ::selection {
+    background-color: color-mix(in oklab, var(--pp-primary) 30%, transparent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--pp-primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* Scroll reveal: <Reveal> adds .is-visible when the element enters the viewport */
+@layer components {
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Animations off: from config or from the OS "reduce motion" setting */
+html[data-motion='off'] *,
+html[data-motion='off'] *::before,
+html[data-motion='off'] *::after {
+  animation: none !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}
+html[data-motion='off'] .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* Smooth cross-fade when switching style (View Transitions API, where supported) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
